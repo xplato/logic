@@ -1,0 +1,14 @@
+// This hook tracks the state changes of `value`
+// and returns the previously saved value.
+
+import { useRef, useEffect } from "react"
+
+export const usePrevious = (value: any): any => {
+	const ref = useRef()
+
+	useEffect(() => {
+		ref.current = value
+	}, [])
+
+	return ref.current
+}

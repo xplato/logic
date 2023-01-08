@@ -1,0 +1,43 @@
+{
+	"name": "@xplato/logic",
+	"version": "1.0.0",
+	"author": "Tristan Brewster <xplato@infi.im>",
+	"license": "MIT",
+	"repository": "https://github.com/xplato/logic",
+	"description": "Common logic / React hooks I use in many projects",
+	"keywords": [
+		"typescript",
+		"react",
+		"component library",
+		"design system"
+	],
+	"main": "dist/index.js",
+	"module": "dist/index.modern.js",
+	"source": "packages/core/index.ts",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"start": "microbundle-crl watch --no-compress --format modern,cjs",
+		"build": "microbundle-crl --no-compress --format modern,cjs",
+		"start:demo": "cd demo && yarn dev"
+	},
+	"peerDependencies": {
+		"react": "16 || 17 || 18"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.38",
+		"@types/react": "^16.9.27",
+		"@types/react-dom": "^16.9.7",
+		"cross-env": "^7.0.2",
+		"microbundle-crl": "^0.13.10",
+		"npm-run-all": "^4.1.5",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^3.7.5"
+	},
+	"files": [
+		"dist"
+	],
+	"dependencies": {}
+}
