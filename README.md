@@ -28,15 +28,15 @@ import { useDynamicPanel, generateMods } from "@xplato/logic"
 
 ## Documentation
 
-Logic is primarily split into two parts: Core and React. The Core section contains all of the non-React, general utilities like `generateMods`, `kebabize`, and so on. The Core package does not access any browser-level APIs, so it's utilities are safe to use in any environment.
+Logic is primarily split into two parts: Core and React. The Core section contains all of the non-React, general utilities like `generateMods`, `kebabize`, and so on. The Core package does not access any browser-level APIs, so its utilities are safe to use in any environment.
 
 ### Core
 
 #### DOM
 
-##### `generateMods(mods: Mods): string[]`
+##### `generateMods(mods: Mods): string | string[]`
 
-`generateMods` is a function used to generate an array (or a single) CSS classname(s) from variables. It takes an object.
+`generateMods` is a function used to generate an array of CSS classnames from variables. It takes an object. It is expected to be placed in a call to `classNames`.
 
 ```ts
 import { generateMods } from "@xplato/logic"
