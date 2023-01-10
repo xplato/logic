@@ -1,5 +1,24 @@
 var react = require('react');
 
+var interweave = function interweave(_ref, values) {
+  var key = _ref[0],
+    extras = _ref.slice(1);
+  if (values === void 0) {
+    values = [];
+  }
+  return key === undefined ? values : [key].concat(interweave(values, extras));
+};
+var range = function range(start, end, step) {
+  if (step === void 0) {
+    step = 1;
+  }
+  return Array.from({
+    length: (end - start) / step + 1
+  }, function (_, i) {
+    return start + i * step;
+  });
+};
+
 var removeWhitespaceAndMakeLowerCase = function removeWhitespaceAndMakeLowerCase(str) {
   return str.toLowerCase().replace(/\s/g, "");
 };
@@ -108,8 +127,10 @@ var usePrevious = function usePrevious(value) {
 
 exports.capitalize = capitalize;
 exports.generateMods = generateMods;
+exports.interweave = interweave;
 exports.kebabize = kebabize;
 exports.omitFields = omitFields;
+exports.range = range;
 exports.removeWhitespaceAndMakeLowerCase = removeWhitespaceAndMakeLowerCase;
 exports.smoothScrollTo = smoothScrollTo;
 exports.toSlug = toSlug;

@@ -32,6 +32,36 @@ Logic is primarily split into two parts: Core and React. The Core section contai
 
 ### Core
 
+#### Array
+
+##### `interweave<T>(arr1: T[], arr2: T[])`
+
+Interweaves two arrays together.
+
+```ts
+import { interweave } from "@xplato/logic"
+
+const arr1 = [1, 2, 3]
+const arr2 = [4, 5, 6]
+
+console.log(interweave(arr1, arr2))
+// [1, 4, 2, 5, 3, 6]
+```
+
+##### `range(start: number, end: number, step: number = 1)`
+
+Generates an array of numbers from `start` to `end` with a step of `step` (default `1`).
+
+```ts
+import { range } from "@xplato/logic"
+
+console.log(range(0, 10))
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+console.log(range(0, 10, 2))
+// [0, 2, 4, 6, 8, 10]
+```
+
 #### DOM
 
 ##### `generateMods(mods: Mods): string | string[]`

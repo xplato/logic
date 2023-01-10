@@ -1,5 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 
+const interweave = ([key, ...extras], values = []) => key === undefined ? values : [key, ...interweave(values, extras)];
+const range = (start, end, step = 1) => {
+  return Array.from({
+    length: (end - start) / step + 1
+  }, (_, i) => start + i * step);
+};
+
 const removeWhitespaceAndMakeLowerCase = str => {
   return str.toLowerCase().replace(/\s/g, "");
 };
@@ -101,5 +108,5 @@ const usePrevious = value => {
   return ref.current;
 };
 
-export { capitalize, generateMods, kebabize, omitFields, removeWhitespaceAndMakeLowerCase, smoothScrollTo, toSlug, useDynamicPanel, usePrevious };
+export { capitalize, generateMods, interweave, kebabize, omitFields, range, removeWhitespaceAndMakeLowerCase, smoothScrollTo, toSlug, useDynamicPanel, usePrevious };
 //# sourceMappingURL=index.modern.js.map
