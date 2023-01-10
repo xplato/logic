@@ -39,7 +39,7 @@ const generateMods = mods => {
       return "";
     }
     return `${kebabize(key)}-${typeof value === "number" ? value : kebabize(value)}`;
-  });
+  }).filter(Boolean);
 };
 const smoothScrollTo = elementID => {
   const element = document.getElementById(elementID);
@@ -50,10 +50,39 @@ const smoothScrollTo = elementID => {
   }
 };
 
+const deepCopy = object => {
+  if (object === null || typeof object !== "object") {
+    return object;
+  }
+  if (Array.isArray(object)) {
+    return object.map(item => deepCopy(item));
+  }
+  const copiedObject = {};
+  for (const key in object) {
+    if (object.hasOwnProperty(key)) {
+      copiedObject[key] = deepCopy(object[key]);
+    }
+  }
+  return copiedObject;
+};
 const omitFields = (object, fields) => {
   return Object.assign({}, object, Object.assign({}, ...fields.map(key => ({
     [key]: undefined
   }))));
+};
+const pickFields = (object, fields) => {
+  const newObject = {};
+  for (const field of fields) {
+    newObject[field] = object[field];
+  }
+  return newObject;
+};
+const removeFields = (object, fields) => {
+  const newObject = deepCopy(object);
+  for (const field of fields) {
+    delete newObject[field];
+  }
+  return newObject;
 };
 
 const useDynamicPanel = () => {
@@ -108,5 +137,5 @@ const usePrevious = value => {
   return ref.current;
 };
 
-export { capitalize, generateMods, interweave, kebabize, omitFields, range, removeWhitespaceAndMakeLowerCase, smoothScrollTo, toSlug, useDynamicPanel, usePrevious };
+export { capitalize, deepCopy, generateMods, interweave, kebabize, omitFields, pickFields, range, removeFields, removeWhitespaceAndMakeLowerCase, smoothScrollTo, toSlug, useDynamicPanel, usePrevious };
 //# sourceMappingURL=index.modern.js.map

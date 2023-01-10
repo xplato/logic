@@ -72,12 +72,12 @@ console.log(range(0, 10, 2))
 import { generateMods } from "@xplato/logic"
 
 const mods = generateMods({
-  isOpen: true,
-  isClosed: false,
-  size: "sm",
-  color: "red",
-  light: true,
-  dark: false,
+	isOpen: true,
+	isClosed: false,
+	size: "sm",
+	color: "red",
+	light: true,
+	dark: false,
 })
 
 // mods = ["is-open", "size-sm", "color-red", "light"]
@@ -95,20 +95,85 @@ smoothScrollTo("elementID")
 
 #### Objects
 
+##### `deepCopy<T>(object: T): T`
+
+Deep copies an object. A safe alternative to the spread operator (which only goes one layer deep!!!).
+
+This does not use the `JSON.parse(JSON.stringify(object))` method.
+
+```ts
+import { deepCopy } from "@xplato/logic"
+
+const deepObject = {
+	a: 1,
+	b: {
+		c: 2,
+		d: {
+			e: 3,
+		},
+	},
+}
+
+const result = deepCopy(deepObject)
+// result = {
+// 	a: 1,
+// 	b: {
+// 		c: 2,
+// 		d: {
+// 			e: 3,
+// 		},
+// 	},
+// }
+```
+
 ##### `omitFields<T, Fields extends keyof T>(object: T, fields: Fields[]): Omit<T, Fields>`
 
-Removes fields from an object.
+Marks fields on an object as `undefined`.
 
 ```ts
 import { omitFields } from "@xplato/logic"
 
 const object = {
-  a: 1,
-  b: 2,
-  c: 3,
+	a: 1,
+	b: 2,
+	c: 3,
 }
 
 const result = omitFields(object, ["a", "c"])
+// result = { b: 2 }
+```
+
+##### `pickFields<T, Fields extends keyof T>(object: T, fields: Fields[]): Pick<T, Fields>`
+
+Picks fields from an object.
+
+```ts
+import { pickFields } from "@xplato/logic"
+
+const object = {
+	a: 1,
+	b: 2,
+	c: 3,
+}
+
+const result = pickFields(object, ["a", "c"])
+// result = { a: 1, c: 3 }
+```
+
+##### `removeFields<T, Fields extends keyof T>(object: T, fields: Fields[]): Pick<T, Exclude<keyof T, Fields>>`
+
+Removes fields from an object.
+
+```ts
+import { removeFields } from "@xplato/logic"
+
+const object = {
+	a: 1,
+	b: 2,
+	c: 3,
+}
+
+const result = removeFields(object, ["a", "c"])
 // result = { b: 2 }
 ```
 

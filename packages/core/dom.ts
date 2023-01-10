@@ -11,21 +11,23 @@ export const generateMods = (mods: Mods): string | string[] => {
 		return ""
 	}
 
-	return keys.map(key => {
-		const value = mods[key]
+	return keys
+		.map(key => {
+			const value = mods[key]
 
-		if (value === true) {
-			return kebabize(key)
-		}
+			if (value === true) {
+				return kebabize(key)
+			}
 
-		if (!value) {
-			return ""
-		}
+			if (!value) {
+				return ""
+			}
 
-		return `${kebabize(key)}-${
-			typeof value === "number" ? value : kebabize(value)
-		}`
-	})
+			return `${kebabize(key)}-${
+				typeof value === "number" ? value : kebabize(value)
+			}`
+		})
+		.filter(Boolean)
 }
 
 export const smoothScrollTo = (elementID: string) => {

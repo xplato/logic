@@ -51,7 +51,7 @@ var generateMods = function generateMods(mods) {
       return "";
     }
     return kebabize(key) + "-" + (typeof value === "number" ? value : kebabize(value));
-  });
+  }).filter(Boolean);
 };
 var smoothScrollTo = function smoothScrollTo(elementID) {
   var element = document.getElementById(elementID);
@@ -62,11 +62,76 @@ var smoothScrollTo = function smoothScrollTo(elementID) {
   }
 };
 
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (it) return (it = it.call(o)).next.bind(it);
+  if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (it) o = it;
+    var i = 0;
+    return function () {
+      if (i >= o.length) return {
+        done: true
+      };
+      return {
+        done: false,
+        value: o[i++]
+      };
+    };
+  }
+  throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var deepCopy = function deepCopy(object) {
+  if (object === null || typeof object !== "object") {
+    return object;
+  }
+  if (Array.isArray(object)) {
+    return object.map(function (item) {
+      return deepCopy(item);
+    });
+  }
+  var copiedObject = {};
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      copiedObject[key] = deepCopy(object[key]);
+    }
+  }
+  return copiedObject;
+};
 var omitFields = function omitFields(object, fields) {
   return Object.assign({}, object, Object.assign.apply(Object, [{}].concat(fields.map(function (key) {
     var _ref;
     return _ref = {}, _ref[key] = undefined, _ref;
   }))));
+};
+var pickFields = function pickFields(object, fields) {
+  var newObject = {};
+  for (var _iterator = _createForOfIteratorHelperLoose(fields), _step; !(_step = _iterator()).done;) {
+    var field = _step.value;
+    newObject[field] = object[field];
+  }
+  return newObject;
+};
+var removeFields = function removeFields(object, fields) {
+  var newObject = deepCopy(object);
+  for (var _iterator2 = _createForOfIteratorHelperLoose(fields), _step2; !(_step2 = _iterator2()).done;) {
+    var field = _step2.value;
+    delete newObject[field];
+  }
+  return newObject;
 };
 
 var useDynamicPanel = function useDynamicPanel() {
@@ -126,11 +191,14 @@ var usePrevious = function usePrevious(value) {
 };
 
 exports.capitalize = capitalize;
+exports.deepCopy = deepCopy;
 exports.generateMods = generateMods;
 exports.interweave = interweave;
 exports.kebabize = kebabize;
 exports.omitFields = omitFields;
+exports.pickFields = pickFields;
 exports.range = range;
+exports.removeFields = removeFields;
 exports.removeWhitespaceAndMakeLowerCase = removeWhitespaceAndMakeLowerCase;
 exports.smoothScrollTo = smoothScrollTo;
 exports.toSlug = toSlug;
