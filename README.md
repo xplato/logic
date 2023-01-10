@@ -140,7 +140,7 @@ const object = {
 }
 
 const result = omitFields(object, ["a", "c"])
-// result = { b: 2 }
+// result = { a: undefined, b: 2, c: undefined }
 ```
 
 ##### `pickFields<T, Fields extends keyof T>(object: T, fields: Fields[]): Pick<T, Fields>`
