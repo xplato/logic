@@ -71,20 +71,13 @@ console.log(range(0, 10, 2))
 ```ts
 import { generateMods } from "@xplato/logic"
 
-const isOpen = true
-const isClosed = false
-const size = "sm"
-const color = "red"
-const light = true
-const dark = false
-
 const mods = generateMods({
-  isOpen,
-  isClosed,
-  size,
-  color,
-  light,
-  dark,
+  isOpen: true,
+  isClosed: false,
+  size: "sm",
+  color: "red",
+  light: true,
+  dark: false,
 })
 
 // mods = ["is-open", "size-sm", "color-red", "light"]
