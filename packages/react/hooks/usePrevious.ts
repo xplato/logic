@@ -3,12 +3,16 @@
 
 import { useRef, useEffect } from "react"
 
-export const usePrevious = (value: any): any => {
-	const ref = useRef()
+export const usePrevious = <T>(value: T): T => {
+	const ref = useRef<T>()
 
 	useEffect(() => {
 		ref.current = value
 	}, [])
 
-	return ref.current
+	if (ref.current) {
+		return ref.current
+	}
+
+	return value
 }

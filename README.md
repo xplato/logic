@@ -34,9 +34,9 @@ Logic is primarily split into two parts: Core and React. The Core section contai
 
 #### Array
 
-##### `interweave<T>(arr1: T[], arr2: T[])`
+##### `interweave<T>([key, ...extras]: T[], values: T[] = []): T[]`
 
-Interweaves two arrays together.
+Interweave two arrays together.
 
 ```ts
 import { interweave } from "@xplato/logic"
@@ -48,7 +48,7 @@ console.log(interweave(arr1, arr2))
 // [1, 4, 2, 5, 3, 6]
 ```
 
-##### `range(start: number, end: number, step: number = 1)`
+##### `range(start: number, end: number, step: number = 1): number[]`
 
 Generates an array of numbers from `start` to `end` with a step of `step` (default `1`).
 
@@ -64,7 +64,7 @@ console.log(range(0, 10, 2))
 
 #### DOM
 
-##### `generateMods(mods: Mods): string | string[]`
+##### `generateMods(mods: Mods): string[]`
 
 `generateMods` is a function used to generate an array of CSS classnames from variables. It takes an object. It is expected to be placed in a call to `classNames`.
 
@@ -179,17 +179,6 @@ const result = removeFields(object, ["a", "c"])
 
 #### Strings
 
-##### `removeWhitespaceAndMakeLowerCase(str: string): string`
-
-The name is rather clear. Accepts a string, returns a string.
-
-```ts
-import { removeWhitespaceAndMakeLowerCase } from "@xplato/logic"
-
-const result = removeWhitespaceAndMakeLowerCase("HI THERE")
-// result = "hithere"
-```
-
 ##### `kebabize(str: string): string`
 
 Converts a string to kebab-case.
@@ -202,17 +191,6 @@ const result = kebabize("Hello There")
 
 const result2 = kebabize("helloThere")
 // result2 = "hello-there"
-```
-
-##### `toSlug(str: string)`
-
-Replaces spaces with dashes and converts a string to lowercase.
-
-```ts
-import { toSlug } from "@xplato/logic"
-
-const result = toSlug("Hello There")
-// result = "hello-there"
 ```
 
 ##### `capitalize(str: string): string`
@@ -248,7 +226,7 @@ const dynamicPanel = useDynamicPanel()
 // }
 ```
 
-##### `usePrevious(state: any)`
+##### `usePrevious<T>(value: T): T`
 
 A simple hook that tracks the previous value of a state variable.
 

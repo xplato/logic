@@ -19,9 +19,6 @@ var range = function range(start, end, step) {
   });
 };
 
-var removeWhitespaceAndMakeLowerCase = function removeWhitespaceAndMakeLowerCase(str) {
-  return str.toLowerCase().replace(/\s/g, "");
-};
 var kebabize = function kebabize(str) {
   return str.replaceAll(" ", "-").split("").map(function (letter, index) {
     if (letter === "-") {
@@ -30,9 +27,6 @@ var kebabize = function kebabize(str) {
     return letter.toUpperCase() === letter ? "" + (index !== 0 ? "-" : "") + letter.toLowerCase() : letter;
   }).join("");
 };
-var toSlug = function toSlug(str) {
-  return str.replaceAll(" ", "-").toLowerCase();
-};
 var capitalize = function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
@@ -40,7 +34,7 @@ var capitalize = function capitalize(word) {
 var generateMods = function generateMods(mods) {
   var keys = Object.keys(mods);
   if (keys.length === 0) {
-    return "";
+    return [""];
   }
   return keys.map(function (key) {
     var value = mods[key];
@@ -187,7 +181,10 @@ var usePrevious = function usePrevious(value) {
   react.useEffect(function () {
     ref.current = value;
   }, []);
-  return ref.current;
+  if (ref.current) {
+    return ref.current;
+  }
+  return value;
 };
 
 exports.capitalize = capitalize;
@@ -199,9 +196,7 @@ exports.omitFields = omitFields;
 exports.pickFields = pickFields;
 exports.range = range;
 exports.removeFields = removeFields;
-exports.removeWhitespaceAndMakeLowerCase = removeWhitespaceAndMakeLowerCase;
 exports.smoothScrollTo = smoothScrollTo;
-exports.toSlug = toSlug;
 exports.useDynamicPanel = useDynamicPanel;
 exports.usePrevious = usePrevious;
 //# sourceMappingURL=index.js.map

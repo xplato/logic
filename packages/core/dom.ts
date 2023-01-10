@@ -4,11 +4,11 @@ interface Mods {
 	[key: string]: any
 }
 
-export const generateMods = (mods: Mods): string | string[] => {
+export const generateMods = (mods: Mods): string[] => {
 	const keys = Object.keys(mods)
 
 	if (keys.length === 0) {
-		return ""
+		return [""]
 	}
 
 	return keys

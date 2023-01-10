@@ -1,12 +1,20 @@
-import { interweave, range, generateMods, deepCopy, omitFields, pickFields, removeFields } from "@xplato/logic"
+import {
+	interweave,
+	range,
+	generateMods,
+	deepCopy,
+	omitFields,
+	pickFields,
+	removeFields,
+} from "@xplato/logic"
 
 const Home = () => {
 	// Array
 	const arr1 = [1, 2, 3]
 	const arr2 = [4, 5, 6]
 
-	console.log(interweave(arr1, arr2))
-	console.log(range(0, 100, 5))
+	console.log("interweave", interweave(arr1, arr2))
+	console.log("range", range(0, 100, 5))
 
 	// Dom
 	const mods = generateMods({
@@ -17,7 +25,7 @@ const Home = () => {
 		light: true,
 		dark: false,
 	})
-	console.log(mods)
+	console.log("generateMods", mods)
 
 	// Skipping smoothScrolTo for now
 
@@ -32,7 +40,7 @@ const Home = () => {
 		},
 	}
 
-	console.log(deepCopy(deepObject))
+	console.log("deepCopy", deepCopy(deepObject))
 
 	const obj1 = { a: 1, b: 2, c: 3 }
 

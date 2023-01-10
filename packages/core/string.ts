@@ -1,7 +1,3 @@
-export const removeWhitespaceAndMakeLowerCase = (str: string) => {
-	return str.toLowerCase().replace(/\s/g, "")
-}
-
 export const kebabize = (str: string) => {
 	return str
 		.replaceAll(" ", "-")
@@ -16,10 +12,6 @@ export const kebabize = (str: string) => {
 				: letter
 		})
 		.join("")
-}
-
-export const toSlug = (str: string) => {
-	return str.replaceAll(" ", "-").toLowerCase()
 }
 
 export const capitalize = (word: string) => {

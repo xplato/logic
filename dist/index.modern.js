@@ -7,9 +7,6 @@ const range = (start, end, step = 1) => {
   }, (_, i) => start + i * step);
 };
 
-const removeWhitespaceAndMakeLowerCase = str => {
-  return str.toLowerCase().replace(/\s/g, "");
-};
 const kebabize = str => {
   return str.replaceAll(" ", "-").split("").map((letter, index) => {
     if (letter === "-") {
@@ -18,9 +15,6 @@ const kebabize = str => {
     return letter.toUpperCase() === letter ? `${index !== 0 ? "-" : ""}${letter.toLowerCase()}` : letter;
   }).join("");
 };
-const toSlug = str => {
-  return str.replaceAll(" ", "-").toLowerCase();
-};
 const capitalize = word => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
@@ -28,7 +22,7 @@ const capitalize = word => {
 const generateMods = mods => {
   const keys = Object.keys(mods);
   if (keys.length === 0) {
-    return "";
+    return [""];
   }
   return keys.map(key => {
     const value = mods[key];
@@ -134,8 +128,11 @@ const usePrevious = value => {
   useEffect(() => {
     ref.current = value;
   }, []);
-  return ref.current;
+  if (ref.current) {
+    return ref.current;
+  }
+  return value;
 };
 
-export { capitalize, deepCopy, generateMods, interweave, kebabize, omitFields, pickFields, range, removeFields, removeWhitespaceAndMakeLowerCase, smoothScrollTo, toSlug, useDynamicPanel, usePrevious };
+export { capitalize, deepCopy, generateMods, interweave, kebabize, omitFields, pickFields, range, removeFields, smoothScrollTo, useDynamicPanel, usePrevious };
 //# sourceMappingURL=index.modern.js.map
