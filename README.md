@@ -72,12 +72,12 @@ console.log(range(0, 10, 2))
 import { generateMods } from "@xplato/logic"
 
 const mods = generateMods({
-	isOpen: true,
-	isClosed: false,
-	size: "sm",
-	color: "red",
-	light: true,
-	dark: false,
+  isOpen: true,
+  isClosed: false,
+  size: "sm",
+  color: "red",
+  light: true,
+  dark: false,
 })
 
 // mods = ["is-open", "size-sm", "color-red", "light"]
@@ -105,13 +105,13 @@ This does not use the `JSON.parse(JSON.stringify(object))` method.
 import { deepCopy } from "@xplato/logic"
 
 const deepObject = {
-	a: 1,
-	b: {
-		c: 2,
-		d: {
-			e: 3,
-		},
-	},
+  a: 1,
+  b: {
+    c: 2,
+    d: {
+      e: 3,
+    },
+  },
 }
 
 const result = deepCopy(deepObject)
@@ -134,9 +134,9 @@ Marks fields on an object as `undefined`.
 import { omitFields } from "@xplato/logic"
 
 const object = {
-	a: 1,
-	b: 2,
-	c: 3,
+  a: 1,
+  b: 2,
+  c: 3,
 }
 
 const result = omitFields(object, ["a", "c"])
@@ -151,9 +151,9 @@ Picks fields from an object.
 import { pickFields } from "@xplato/logic"
 
 const object = {
-	a: 1,
-	b: 2,
-	c: 3,
+  a: 1,
+  b: 2,
+  c: 3,
 }
 
 const result = pickFields(object, ["a", "c"])
@@ -168,9 +168,9 @@ Removes fields from an object.
 import { removeFields } from "@xplato/logic"
 
 const object = {
-	a: 1,
-	b: 2,
-	c: 3,
+  a: 1,
+  b: 2,
+  c: 3,
 }
 
 const result = removeFields(object, ["a", "c"])
