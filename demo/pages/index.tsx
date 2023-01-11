@@ -2,7 +2,7 @@ import {
 	interweave,
 	range,
 	generateMods,
-	deepCopy,
+	deepClone,
 	omitFields,
 	pickFields,
 	removeFields,
@@ -40,7 +40,7 @@ const Home = () => {
 		},
 	}
 
-	console.log("deepCopy", deepCopy(deepObject))
+	console.log("deepClone", deepClone(deepObject))
 
 	const obj1 = { a: 1, b: 2, c: 3 }
 

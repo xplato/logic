@@ -1,17 +1,17 @@
-export const deepCopy = <T>(object: T): T => {
+export const deepClone = <T>(object: T): T => {
 	if (object === null || typeof object !== "object") {
 		return object
 	}
 
 	if (Array.isArray(object)) {
-		return object.map(item => deepCopy(item)) as any
+		return object.map(item => deepClone(item)) as any
 	}
 
 	const copiedObject = {} as T
 	for (const key in object) {
 		// @ts-ignore
 		if (object.hasOwnProperty(key)) {
-			copiedObject[key] = deepCopy(object[key])
+			copiedObject[key] = deepClone(object[key])
 		}
 	}
 	return copiedObject
@@ -43,7 +43,7 @@ export const removeFields = <T, Fields extends keyof T>(
 	object: T,
 	fields: Fields[]
 ): Pick<T, Exclude<keyof T, Fields>> => {
-	const newObject = deepCopy(object)
+	const newObject = deepClone(object)
 	for (const field of fields) {
 		delete newObject[field]
 	}

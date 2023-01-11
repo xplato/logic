@@ -95,14 +95,14 @@ smoothScrollTo("elementID")
 
 #### Objects
 
-##### `deepCopy<T>(object: T): T`
+##### `deepClone<T>(object: T): T`
 
 Deep copies an object. A safe alternative to the spread operator (which only goes one layer deep!!!).
 
 This does not use the `JSON.parse(JSON.stringify(object))` method.
 
 ```ts
-import { deepCopy } from "@xplato/logic"
+import { deepClone } from "@xplato/logic"
 
 const deepObject = {
   a: 1,
@@ -114,7 +114,7 @@ const deepObject = {
   },
 }
 
-const result = deepCopy(deepObject)
+const result = deepClone(deepObject)
 // result = {
 // 	a: 1,
 // 	b: {
